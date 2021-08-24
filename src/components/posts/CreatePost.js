@@ -13,7 +13,7 @@ class CreatePost extends Component {
 
     this.state = {
       title: '',
-      director: '',
+      content: '',
       postId: null
     }
   }
@@ -48,7 +48,7 @@ class CreatePost extends Component {
   }
 
   render () {
-    const { title, director, postId } = this.state
+    const { title, content, postId } = this.state
 
     if (postId) {
       return <Redirect to={
@@ -70,13 +70,13 @@ class CreatePost extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId='director'>
-            <Form.Label>Director</Form.Label>
+          <Form.Group controlId='content'>
+            <Form.Label>Content</Form.Label>
             <Form.Control
               required
-              name='director'
-              value={director}
-              placeholder='Director'
+              name='content'
+              value={content}
+              placeholder='Content'
               onChange={this.handleChange}
             />
           </Form.Group>

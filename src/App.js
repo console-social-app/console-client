@@ -16,6 +16,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreatePost from './components/posts/CreatePost'
+import EditPost from './components/posts/EditPost'
 import Posts from './components/posts/Posts'
 import Post from './components/posts/Post'
 
@@ -117,6 +118,12 @@ class App extends Component {
 	          user={user}
 	          path='/create-post'
 	          render={() => <CreatePost msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+					  exact
+	          path='/posts/:id/edit'
+	          render={() => <EditPost msgAlert={this.msgAlert} user={user} />}
 	        />
 	        <AuthenticatedRoute
 	          user={user}
