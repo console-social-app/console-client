@@ -7,6 +7,8 @@ import './Header.scss'
 const authenticatedOptions = (
   <Fragment>
     <NavLink exact to='/home' className='nav-link'>Home</NavLink>
+    <NavLink exact to='/posts' className='nav-link'>Posts</NavLink>
+    <NavLink exact to='/create-post' className='nav-link'>Create</NavLink>
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </Fragment>

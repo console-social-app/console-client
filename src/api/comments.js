@@ -31,7 +31,7 @@ export const indexComments = (user, postId) => {
 export const showComment = (user, postId, commentId) => {
   return axios({
     method: 'GET',
-    url: `post/${postId}/comments/${commentId}`,
+    url: `/comments/${commentId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     }
@@ -41,7 +41,7 @@ export const showComment = (user, postId, commentId) => {
 export const deleteComment = (user, postId, commentId) => {
   return axios({
     method: 'DELETE',
-    url: `post/${postId}/comments/${commentId}`,
+    url: `/comments/${commentId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     }

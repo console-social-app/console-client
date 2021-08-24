@@ -8,14 +8,13 @@ class Home extends Component {
     super(props)
 
     this.state = {
-      posts: [],
-      loading: false
     }
   }
 
   render () {
     return (
       <>
+        <h1>hello</h1>
         <CreatePost />
         <Posts />
       </>
