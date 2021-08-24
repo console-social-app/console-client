@@ -89,8 +89,6 @@ class App extends Component {
 	            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
 	          )}
 	        />
-	        {/* AuthenticatedRoute is a custom component by GA. NOT a default React component */}
-	        {/* MUST pass user, otherwise route will never be hit. */}
 	        <AuthenticatedRoute
 	          user={user}
 	          path='/sign-out'
