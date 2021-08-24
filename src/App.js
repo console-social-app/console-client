@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
 // Import React, also destructuring Component and Fragment from React
 // React is required for JSX
@@ -19,14 +20,14 @@ import Posts from './components/posts/Posts'
 import Post from './components/posts/Post'
 
 class App extends Component {
-	// Constructor initializes component
-	constructor(props) {
-		super(props)
-		this.state = {
-			user: null,
-			msgAlerts: [],
-		}
-	}
+  // Constructor initializes component
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: null,
+      msgAlerts: []
+    }
+  }
 
 	// Accepts a user and sets that user in state
 	setUser = (user) => this.setState({ user })
@@ -36,98 +37,104 @@ class App extends Component {
 
 	// Removes a specific alert from the msgAlerts array in state
 	deleteAlert = (id) => {
-		this.setState((state) => {
-			// .filter() does not modify original array
-			return { msgAlerts: state.msgAlerts.filter((msg) => msg.id !== id) }
-		})
+	  this.setState((state) => {
+	    // .filter() does not modify original array
+	    return { msgAlerts: state.msgAlerts.filter((msg) => msg.id !== id) }
+	  })
 	}
 
 	// Accepts one alert object with three keys
 	msgAlert = ({ heading, message, variant }) => {
-		// Generate a universally unique id for this alert
-		const id = uuid()
-		// Set state by passing setState a callback
-		// 'state' param is previous state
-		this.setState((state) => {
-			return {
-				// spread existing msgAlerts array and add the new alert to it.
-				msgAlerts: [...state.msgAlerts, { heading, message, variant, id }],
-			}
-		})
+	  // Generate a universally unique id for this alert
+	  const id = uuid()
+	  // Set state by passing setState a callback
+	  // 'state' param is previous state
+	  this.setState((state) => {
+	    return {
+	      // spread existing msgAlerts array and add the new alert to it.
+	      msgAlerts: [...state.msgAlerts, { heading, message, variant, id }]
+	    }
+	  })
 	}
 
-	render() {
-		const { msgAlerts, user } = this.state
+	render () {
+	  const { msgAlerts, user } = this.state
 
-		return (
-			<>
-				{/* Passing user to header allows for tabs unique to the user */}
-				<Header user={user} />
-				{/* This .map will return a new array filled with JSX of our msgAlerts */}
-				{msgAlerts.map((msgAlert) => (
-					<AutoDismissAlert
-						key={msgAlert.id}
-						heading={msgAlert.heading}
-						variant={msgAlert.variant}
-						message={msgAlert.message}
-						id={msgAlert.id}
-						deleteAlert={this.deleteAlert}
-					/>
-				))}
-				<main className='container'>
-					{/* Pass in 'msgAlert' and 'setUser' methods as props */}
-					<Route
-						path='/sign-up'
-						render={() => (
-							<SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-						)}
-					/>
-					<Route
-						path='/sign-in'
-						render={() => (
-							<SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-						)}
-					/>
-					{/* AuthenticatedRoute is a custom component by GA. NOT a default React component */}
-					{/* MUST pass user, otherwise route will never be hit. */}
-					<AuthenticatedRoute
-						user={user}
-						path='/sign-out'
-						render={() => (
-							<SignOut
-								msgAlert={this.msgAlert}
-								clearUser={this.clearUser}
-								user={user}
-							/>
-						)}
-					/>
-					<AuthenticatedRoute
-						user={user}
-						path='/change-password'
-						render={() => (
-							<ChangePassword msgAlert={this.msgAlert} user={user} />
-						)}
-					/>
-					<AuthenticatedRoute
-						user={user}
-						path='/create-post'
-						render={() => <CreatePost msgAlert={this.msgAlert} user={user} />}
-					/>
-					<AuthenticatedRoute
-						user={user}
-						exact
-						path='/posts'
-						render={() => <Posts msgAlert={this.msgAlert} user={user} />}
-					/>
-					<AuthenticatedRoute
-						user={user}
-						exact
-						path='/posts/:id'
-						render={() => <Post msgAlert={this.msgAlert} user={user} />}
-					/>
-				</main>
-			</>
-		)
+	  return (
+	    <>
+	      {/* Passing user to header allows for tabs unique to the user */}
+	      <Header user={user} />
+	      {/* This .map will return a new array filled with JSX of our msgAlerts */}
+	      {msgAlerts.map((msgAlert) => (
+	        <AutoDismissAlert
+	          key={msgAlert.id}
+	          heading={msgAlert.heading}
+	          variant={msgAlert.variant}
+	          message={msgAlert.message}
+	          id={msgAlert.id}
+	          deleteAlert={this.deleteAlert}
+	        />
+	      ))}
+	      <main className='container'>
+	        {/* Pass in 'msgAlert' and 'setUser' methods as props */}
+	        <Route
+	          path='/sign-up'
+	          render={() => (
+	            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+	          )}
+	        />
+	        <Route
+	          path='/sign-in'
+	          render={() => (
+	            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+	          )}
+	        />
+	        {/* AuthenticatedRoute is a custom component by GA. NOT a default React component */}
+	        {/* MUST pass user, otherwise route will never be hit. */}
+	        <AuthenticatedRoute
+	          user={user}
+	          path='/sign-out'
+	          render={() => (
+	            <SignOut
+	              msgAlert={this.msgAlert}
+	              clearUser={this.clearUser}
+	              user={user}
+	            />
+	          )}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          path='/change-password'
+	          render={() => (
+	            <ChangePassword msgAlert={this.msgAlert} user={user} />
+	          )}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          exact
+	          path='/home'
+	          render={() => <Post msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          path='/create-post'
+	          render={() => <CreatePost msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          exact
+	          path='/posts'
+	          render={() => <Posts msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          exact
+	          path='/posts/:id'
+	          render={() => <Post msgAlert={this.msgAlert} user={user} />}
+	        />
+	      </main>
+	    </>
+	  )
 	}
 }
 
