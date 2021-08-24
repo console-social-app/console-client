@@ -13,7 +13,7 @@ class CreateComment extends Component {
 
     this.state = {
       title: '',
-      director: '',
+      content: '',
       commentId: null
     }
   }
@@ -48,7 +48,7 @@ class CreateComment extends Component {
   }
 
   render () {
-    const { title, director, commentId } = this.state
+    const { title, content, commentId } = this.state
 
     if (commentId) {
       return <Redirect to={
@@ -70,13 +70,13 @@ class CreateComment extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId='director'>
-            <Form.Label>Director</Form.Label>
+          <Form.Group controlId='content'>
+            <Form.Label>Content</Form.Label>
             <Form.Control
               required
-              name='director'
-              value={director}
-              placeholder='Director'
+              name='content'
+              value={content}
+              placeholder='Content'
               onChange={this.handleChange}
             />
           </Form.Group>

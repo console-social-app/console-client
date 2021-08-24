@@ -70,7 +70,7 @@ class EditComment extends Component {
     return (
       <>
         <h4>{comment.title}</h4>
-        <p>Directed by: {comment.director}</p>
+        <p>{comment.content}</p>
         <button onClick={this.destroy}>Delete comment</button>
         <Link to={`/comments/${this.props.match.params.id}/edit`}>
           <button>Edit</button>

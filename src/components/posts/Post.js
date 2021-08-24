@@ -19,6 +19,8 @@ class Post extends Component {
   componentDidMount () {
     const { user, match, msgAlert } = this.props
 
+    console.log(match.params.id)
+
     showPost(user, match.params.id)
       .then(res => this.setState({ post: res.data.post }))
       .catch(err => {
@@ -70,12 +72,14 @@ class Post extends Component {
     return (
       <>
         <h4>{post.title}</h4>
-        <p>Directed by: {post.director}</p>
+        <p>{post.content}</p>
         <button onClick={this.destroy}>Delete post</button>
         <Link to={`/posts/${this.props.match.params.id}/edit`}>
           <button>Edit</button>
         </Link>
-        <Link to="/posts">Back to all posts</Link>
+        <Link to="/posts">
+          <button>Back to all posts</button>
+        </Link>
       </>
     )
   }
