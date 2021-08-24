@@ -23,3 +23,15 @@ export const showPostFailure =
 export const deletePostSuccess = 'Your post has successfully been deleted.'
 export const deletePostFailure =
 	'Something went wrong while deleting this post, please refresh and try again. Error: '
+
+// COMMENTS
+export const createCommentSuccess = 'Your comment has successfully been created.'
+export const createCommentFailure =
+	'Failed to create comment, please double check your input and try again. Error: '
+export const indexCommentsFailure =
+	'Couldn\'t find comments, please refresh the page and try again. Error: '
+export const showCommentFailure =
+	'Couldn\'t find this comment. Please refresh the page and try again. Error: '
+export const deleteCommentSuccess = 'Your comment has successfully been deleted.'
+export const deleteCommentFailure =
+	'Something went wrong while deleting this comment, please refresh and try again. Error: '
