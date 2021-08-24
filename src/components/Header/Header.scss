@@ -1,0 +1,14 @@
+#header {
+  background-color: #7BADEF;
+  border-radius: 0 0 25px 25px
+}
+
+#headerTitle {
+  margin: 0 15px;
+  color: #FFF;
+  text-decoration: none;
+
+  &:hover {
+    text-shadow: .75px 0 #FFF
+  }
+}
