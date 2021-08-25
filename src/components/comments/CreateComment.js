@@ -29,10 +29,12 @@ class CreateComment extends Component {
     const { msgAlert, history, user, postId } = this.props
 
     createComment(this.state, user, postId)
-      .then(() => history.push('/posts'))
-      .then(() => {
-        this.setState({ created: true })
+      .then(res => {
+        console.log(res)
+        return res
       })
+      .then(res => this.setState({ commentId: res.data.comment._id }))
+      .then(() => history.push('/'))
       .then(() => {
         msgAlert({
           heading: 'Comment Created',
