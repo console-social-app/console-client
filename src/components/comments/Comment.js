@@ -36,7 +36,16 @@ class Comment extends Component {
 
   render () {
     const { deleted } = this.state
-    const { comment } = this.props
+    const { comment, user } = this.props
+
+    const modifyButtonsJsx = (
+      <>
+        <button onClick={this.destroy}>Delete comment</button>
+        <Link to={`/comments/${this.props.match.params.id}/edit`}>
+          <button>Edit</button>
+        </Link>
+      </>
+    )
 
     if (deleted) {
       return <Redirect to={
@@ -44,15 +53,11 @@ class Comment extends Component {
       } />
     }
 
+    console.log(comment.ownerName)
     return (
       <>
-        <h4>{comment.ownerName}</h4>
-        <p>{comment.content}</p>
-        <button onClick={this.destroy}>Delete comment</button>
-        <Link to={`/comments/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
-        </Link>
-        <Link to="/comments">Back to all comments</Link>
+        <p><b>{comment.ownerName}</b>: {comment.content}</p>
+        {comment.owner === user._id ? modifyButtonsJsx : ''}
       </>
     )
   }

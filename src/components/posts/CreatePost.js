@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import { createPost } from '../../api/posts'
 import { createPostSuccess, createPostFailure } from '../AutoDismissAlert/messages'
@@ -30,7 +30,7 @@ class CreatePost extends Component {
 
     createPost(this.state, user)
       .then(res => this.setState({ postId: res.data.post._id }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/posts'))
       .then(() => {
         msgAlert({
           heading: 'Post Created',
@@ -48,13 +48,7 @@ class CreatePost extends Component {
   }
 
   render () {
-    const { title, content, postId } = this.state
-
-    if (postId) {
-      return <Redirect to={
-        { pathname: '/posts/' + postId }
-      } />
-    }
+    const { title, content } = this.state
 
     return (
       <>

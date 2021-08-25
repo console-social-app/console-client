@@ -4,6 +4,7 @@ import { indexPosts } from '../../api/posts'
 import { indexPostsFailure } from '../AutoDismissAlert/messages'
 
 import PostContainer from './PostContainer'
+import CreatePost from './CreatePost'
 
 class Posts extends Component {
   constructor (props) {
@@ -35,18 +36,19 @@ class Posts extends Component {
     const { posts } = this.state
     const { user, msgAlert } = this.props
     return (
-      <ul>
+      <div>
+        <CreatePost msgAlert={this.msgAlert} user={user} />
         {posts.map(post => (
-          <li key={post._id}>
+          <div className="border" key={post._id}>
             <PostContainer
               msgAlert={msgAlert}
               user={user}
               post={post}
               comments={post.comments}
             />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     )
   }
 }

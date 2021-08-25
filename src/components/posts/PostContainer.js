@@ -14,6 +14,12 @@ class PostContainer extends Component {
     }
   }
 
+  goToPost = (e) => {
+    if (!e.target.classList.contains('post')) return
+    const { post, history } = this.props
+    history.push(`/posts/${post._id}`)
+  }
+
   updateComments = (comment) => {
     this.setState(prevState => {
       return { comments: [...prevState.comments, comment] }
@@ -36,24 +42,26 @@ class PostContainer extends Component {
     console.log(post)
     const { showComments, comments } = this.state
     const commentsJsx = (
-      <Comments msgAlert={msgAlert} user={user} comments={comments}/>
-    )
-    return (
       <>
-        <h3>{post.owner.username}</h3>
-        <Link to={`/posts/${post._id}`}>{post.title}</Link>
-        <p>{post.content}</p>
         <CreateComment
           updateComments={this.updateComments}
           msgAlert={msgAlert}
           user={user}
           postId={post._id}
         />
+        <Comments msgAlert={msgAlert} user={user} comments={comments}/>
+      </>
+    )
+    return (
+      <div className="post" onClick={e => this.goToPost(e)}>
+        <Link>{post.owner.username}: </Link>
+        <Link to={`/posts/${post._id}`}>{post.title}</Link>
+        <p>{post.content}</p>
         <button onClick={this.toggleComments}>
           {showComments ? 'Hide Comments' : `Comments: ${comments.length}`}
         </button>
         {showComments ? commentsJsx : ''}
-      </>
+      </div>
     )
   }
 }

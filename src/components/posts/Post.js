@@ -19,8 +19,6 @@ class Post extends Component {
   componentDidMount () {
     const { user, match, msgAlert } = this.props
 
-    console.log(match.params.id)
-
     showPost(user, match.params.id)
       .then(res => this.setState({ post: res.data.post }))
       .catch(err => {
@@ -54,6 +52,16 @@ class Post extends Component {
 
   render () {
     const { post, deleted } = this.state
+    const { user } = this.props
+
+    const modifyButtonsJsx = (
+      <>
+        <button onClick={this.destroy}>Delete post</button>
+        <Link to={`/posts/${this.props.match.params.id}/edit`}>
+          <button>Edit</button>
+        </Link>
+      </>
+    )
 
     if (!post) {
       return (
@@ -74,10 +82,7 @@ class Post extends Component {
         <h4>{post.owner.username}</h4>
         <h4>{post.title}</h4>
         <p>{post.content}</p>
-        <button onClick={this.destroy}>Delete post</button>
-        <Link to={`/posts/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
-        </Link>
+        {post.owner._id === user._id ? modifyButtonsJsx : ''}
         <Link to="/posts">
           <button>Back to all posts</button>
         </Link>
