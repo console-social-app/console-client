@@ -2,25 +2,36 @@ Hello :)
 
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# react-auth-template
+# GA Social App
 
-A front-end framework template for starting projects with a recent version of
-either the [Django API Template](https://git.generalassemb.ly/ga-wdi-boston/django-template)
-or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express-api-template).
+This is going to be a general description of our app.
 
-## Installation
+## User Stories
 
-1. [Download](../../archive/main.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-main.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
+As a user...
+
+- I would like to sign up with email and password.
+- I would like to sign in with email ane password.
+- I would like to be able to change my password.
+- I would like to sign out.
+- I would like to add a post to my wall.
+- I would like to update a post on my wall.
+- I would like to delete a post on my wall.
+- I would like to see all my posts.
+- I would like to allow other users to view my posts.
+- I would like to view a list of other users and their feed.
+
+Potential User Stories...
+- Allow users to follow other users 
+- Allow users to upvote other user's posts
+- Allow users to send and recieve messages via a chat feature
+- Allow users to be informed of updates via a push notification
+
+## Wireframe
+
+https://imgur.com/TIZIxtF
+
+
 
 ## Deployment
 
@@ -32,20 +43,6 @@ To deploy you should first make sure you are on the `main` branch with a
 clean working directory, then you can run `npm run deploy` and wait to see if
 it runs successfully.
 
-## About
-
-This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
-Most of the development dependencies, such as linters, SCSS compiler, Webpack
-config, NPM scripts, etc in this repo come from there.
-
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
-
-**NOTE**: You should customize the included components to suit you app! They're
-provided as a guide and a bare minimum of functionality and style. Consider
-changing the provided SCSS styles, modifying the auth code, improving the flash
-messages, etc.
 
 ## Structure
 
@@ -130,10 +127,7 @@ this file will determine whether you're in a production or development
 environment and choose an API URL accordingly. Don't forget to replace the
 `production` URL with your deployed API's URL.
 
-### Bootstrap
 
-This template includes two different implementations of the classic Bootstrap
-library we know and love.
 
 #### `bootstrap`
 
