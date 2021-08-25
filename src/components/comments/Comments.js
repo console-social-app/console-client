@@ -33,7 +33,7 @@ class Comments extends Component {
     return (
       <div>
         {comments.map(comment => (
-          <div className="border" key={comment._id}>
+          <div key={comment._id}>
             <Comment
               msgAlert={msgAlert}
               user={user}

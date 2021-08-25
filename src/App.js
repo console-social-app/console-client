@@ -17,7 +17,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreatePost from './components/posts/CreatePost'
 import EditPost from './components/posts/EditPost'
-import Posts from './components/posts/Posts'
+import Home from './components/Home/Home'
 import Post from './components/posts/Post'
 
 class App extends Component {
@@ -76,7 +76,7 @@ class App extends Component {
 	          deleteAlert={this.deleteAlert}
 	        />
 	      ))}
-	      <main className='container'>
+	      <main className='container border col-6'>
 	        {/* Pass in 'msgAlert' and 'setUser' methods as props */}
 	        <Route
 	          path='/sign-up'
@@ -110,12 +110,6 @@ class App extends Component {
 	        />
 	        <AuthenticatedRoute
 	          user={user}
-	          exact
-	          path='/home'
-	          render={() => <Post msgAlert={this.msgAlert} user={user} />}
-	        />
-	        <AuthenticatedRoute
-	          user={user}
 	          path='/create-post'
 	          render={() => <CreatePost msgAlert={this.msgAlert} user={user} />}
 	        />
@@ -128,8 +122,8 @@ class App extends Component {
 	        <AuthenticatedRoute
 	          user={user}
 	          exact
-	          path='/posts'
-	          render={() => <Posts msgAlert={this.msgAlert} user={user} />}
+	          path='/home'
+	          render={() => <Home msgAlert={this.msgAlert} user={user} />}
 	        />
 	        <AuthenticatedRoute
 	          user={user}

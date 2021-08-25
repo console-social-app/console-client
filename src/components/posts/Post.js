@@ -73,7 +73,7 @@ class Post extends Component {
 
     if (deleted) {
       return <Redirect to={
-        { pathname: '/posts' }
+        { pathname: '/home' }
       } />
     }
 
@@ -83,8 +83,8 @@ class Post extends Component {
         <h4>{post.title}</h4>
         <p>{post.content}</p>
         {post.owner._id === user._id ? modifyButtonsJsx : ''}
-        <Link to="/posts">
-          <button>Back to all posts</button>
+        <Link to="/home">
+          <button>Go back</button>
         </Link>
       </>
     )

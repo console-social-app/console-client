@@ -49,7 +49,7 @@ class Comment extends Component {
 
     if (deleted) {
       return <Redirect to={
-        { pathname: '/posts' }
+        { pathname: '/home' }
       } />
     }
 

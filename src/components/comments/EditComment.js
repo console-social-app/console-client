@@ -75,7 +75,7 @@ class EditComment extends Component {
         <Link to={`/comments/${this.props.match.params.id}/edit`}>
           <button>Edit</button>
         </Link>
-        <Link to="/comments">Back to all comments</Link>
+        <Link to="/comments">Cancel</Link>
       </>
     )
   }
