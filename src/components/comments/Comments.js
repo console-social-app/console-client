@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-
-import { indexComments } from '../../api/comments'
-import { indexCommentsFailure } from '../AutoDismissAlert/messages'
 
 class Comments extends Component {
   constructor (props) {
@@ -14,29 +10,31 @@ class Comments extends Component {
     }
   }
 
-  componentDidMount () {
-    const { user, msgAlert } = this.props
+  // componentDidMount () {
+  //   const { user, msgAlert } = this.props
 
-    indexComments(user)
-      .then(res => this.setState({
-        comments: res.data.comments
-      }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Create Comment',
-          message: indexCommentsFailure + err.message,
-          variant: 'danger'
-        })
-      })
-  }
+  //   indexComments(user)
+  //     .then(res => this.setState({
+  //       comments: res.data.comments
+  //     }))
+  //     .catch(err => {
+  //       msgAlert({
+  //         heading: 'Couldn\'t Create Comment',
+  //         message: indexCommentsFailure + err.message,
+  //         variant: 'danger'
+  //       })
+  //     })
+  // }
 
   render () {
-    const { comments } = this.state
+    const { comments } = this.props
+    console.log(comments)
     return (
       <ul>
         {comments.map(comment => (
           <li key={comment._id}>
-            <Link to={`/comments/${comment._id}`}>{comment.title}</Link>
+            <h4>{comment.owner}</h4>
+            <p>{comment.content}</p>
           </li>
         ))}
       </ul>

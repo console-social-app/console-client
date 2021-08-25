@@ -69,7 +69,7 @@ class Comment extends Component {
 
     return (
       <>
-        <h4>{comment.title}</h4>
+        <h4>{comment.owner}</h4>
         <p>{comment.content}</p>
         <button onClick={this.destroy}>Delete comment</button>
         <Link to={`/comments/${this.props.match.params.id}/edit`}>
