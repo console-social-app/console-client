@@ -20,7 +20,7 @@ class Posts extends Component {
 
     indexPosts(user)
       .then(res => this.setState({
-        posts: res.data.posts
+        posts: res.data.posts.reverse()
       }))
       .catch(err => {
         msgAlert({

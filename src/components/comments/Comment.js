@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 
-import { deleteComment, showComment } from '../../api/comments'
-import { showCommentFailure, deleteCommentSuccess, deleteCommentFailure } from '../AutoDismissAlert/messages'
-
-import Spinner from 'react-bootstrap/Spinner'
+import { deleteComment } from '../../api/comments'
+import { deleteCommentSuccess, deleteCommentFailure } from '../AutoDismissAlert/messages'
 
 class Comment extends Component {
   constructor (props) {
@@ -14,20 +12,6 @@ class Comment extends Component {
       comment: null,
       deleted: false
     }
-  }
-
-  componentDidMount () {
-    const { user, match, msgAlert } = this.props
-
-    showComment(user, match.params.id)
-      .then(res => this.setState({ comment: res.data.comment }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Create Comment',
-          message: showCommentFailure + err.message,
-          variant: 'danger'
-        })
-      })
   }
 
   destroy = () => {
@@ -51,25 +35,18 @@ class Comment extends Component {
   }
 
   render () {
-    const { comment, deleted } = this.state
-
-    if (!comment) {
-      return (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )
-    }
+    const { deleted } = this.state
+    const { comment } = this.props
 
     if (deleted) {
       return <Redirect to={
-        { pathname: '/comments' }
+        { pathname: '/posts' }
       } />
     }
 
     return (
       <>
-        <h4>{comment.owner}</h4>
+        <h4>{comment.ownerName}</h4>
         <p>{comment.content}</p>
         <button onClick={this.destroy}>Delete comment</button>
         <Link to={`/comments/${this.props.match.params.id}/edit`}>
