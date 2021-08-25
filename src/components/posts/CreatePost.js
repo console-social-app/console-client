@@ -30,7 +30,7 @@ class CreatePost extends Component {
 
     createPost(this.state, user)
       .then(res => this.setState({ postId: res.data.post._id }))
-      .then(() => history.push('/posts'))
+      .then(() => history.push('/home'))
       .then(() => {
         msgAlert({
           heading: 'Post Created',

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { createComment } from '../../api/comments'
-import { createCommentSuccess, createCommentFailure } from '../AutoDismissAlert/messages'
+import { createCommentFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -35,13 +35,6 @@ class CreateComment extends Component {
         return res
       })
       .then(() => updateComments({ ownerName: user.username, owner: user._id, content }))
-      .then(() => {
-        msgAlert({
-          heading: 'Comment Created',
-          message: createCommentSuccess,
-          variant: 'success'
-        })
-      })
       .catch((err) => {
         msgAlert({
           heading: 'Couldn\'t Create Comment',
