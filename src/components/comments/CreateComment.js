@@ -12,7 +12,7 @@ class CreateComment extends Component {
     super(props)
 
     this.state = {
-      title: '',
+      owner: '',
       content: '',
       commentId: null
     }
@@ -26,9 +26,9 @@ class CreateComment extends Component {
   onCreateComment = (event) => {
     event.preventDefault()
 
-    const { msgAlert, history, user } = this.props
+    const { msgAlert, history, user, postId } = this.props
 
-    createComment(this.state, user)
+    createComment(this.state, user, postId)
       .then(res => this.setState({ commentId: res.data.comment._id }))
       .then(() => history.push('/'))
       .then(() => {
@@ -48,7 +48,7 @@ class CreateComment extends Component {
   }
 
   render () {
-    const { title, content, commentId } = this.state
+    const { content, commentId } = this.state
 
     if (commentId) {
       return <Redirect to={
@@ -58,25 +58,14 @@ class CreateComment extends Component {
 
     return (
       <>
-        <h3>Create Comment</h3>
         <Form onSubmit={this.onCreateComment}>
-          <Form.Group controlId='title'>
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              required
-              name='title'
-              value={title}
-              placeholder='Comment Title'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
           <Form.Group controlId='content'>
-            <Form.Label>Content</Form.Label>
+            <Form.Label>Add Comment</Form.Label>
             <Form.Control
               required
               name='content'
               value={content}
-              placeholder='Content'
+              placeholder='Comment'
               onChange={this.handleChange}
             />
           </Form.Group>
