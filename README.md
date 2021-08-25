@@ -1,8 +1,6 @@
-Hello :)
-
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# GA Social App
+# Group 3 Social App
 
 This is going to be a general description of our app.
 
@@ -33,55 +31,6 @@ https://imgur.com/TIZIxtF
 
 
 
-## Deployment
-
-Before deploying, you first need to make sure the `homepage` key in your
-`package.json` is pointing to the correct value. It should be the url of your
-deployed application.
-
-To deploy you should first make sure you are on the `main` branch with a
-clean working directory, then you can run `npm run deploy` and wait to see if
-it runs successfully.
-
-
-## Structure
-
-The top-level `App` component stores the currently authenticated
-user in state, as well as data related to the flash messages. `App` renders the
-`Header` component, and a list of routes, each of which render a component from
-`src/components`. The `src/api` directory has a component file, `auth.js`, which
-contains all the needed `axios` calls pertaining to authentication.
-
-You can follow this pattern in your app as well. For instance, if you are making
-an app that keeps track of books, you might want a `src/api/books.js`, which
-contains its own `axios` call pertaining to your books resource CRUD actions.
-Using a separate directory within `components` for each individual component you
-add makes it easy to locate and update components and has the added benefit of
-making it easy to create custom styles that apply to that specific component.
-To apply component specific styles, add a file to the component's directory such
-as `ComponentName.scss` and then import it directly into the component with
-`import './ComponentName.scss'`.  This will keep your styles modularized and
-make it easier to make changes at the component level.
-
-### Included Routes
-
-This template comes with a handful of front-end routes that display
-different components for user actions.
-
-| Endpoint         | Component | `AuthenticatedRoute`? |
-|------------------|-------------------|-------|
-| `/sign-up`       | `SignUp`    | No |
-| `/sign-in`       | `SignIn`    | No |
-| `/change-password` | `ChangePassword`  | Yes |
-| `/sign-out`        | `SignOut`   | Yes |
-
-There is no HTTP verb listed because these are all front-end routes handled by
-React. Some of these routes should not be available unless a user is signed in,
-so they will use the `AuthenticatedRoute` component instead of the regular
-`Route`. This custom component is provided as part of the template, and is not
-a part of the React library (see more below).
-
-## Features
 
 ### `<AuthenticatedRoute />`
 
