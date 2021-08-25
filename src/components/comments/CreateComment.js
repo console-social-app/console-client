@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import { createComment } from '../../api/comments'
 import { createCommentSuccess, createCommentFailure } from '../AutoDismissAlert/messages'
@@ -14,7 +14,7 @@ class CreateComment extends Component {
     this.state = {
       owner: '',
       content: '',
-      commentId: null
+      created: false
     }
   }
 
@@ -29,8 +29,10 @@ class CreateComment extends Component {
     const { msgAlert, history, user, postId } = this.props
 
     createComment(this.state, user, postId)
-      .then(res => this.setState({ commentId: res.data.comment._id }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/posts'))
+      .then(() => {
+        this.setState({ created: true })
+      })
       .then(() => {
         msgAlert({
           heading: 'Comment Created',
@@ -48,13 +50,14 @@ class CreateComment extends Component {
   }
 
   render () {
-    const { content, commentId } = this.state
+    const { content } = this.state
 
-    if (commentId) {
-      return <Redirect to={
-        { pathname: '/comments/' + commentId }
-      } />
-    }
+    // if (created) {
+    //   console.log('test')
+    //   return <Redirect to={
+    //     { pathname: '/posts/' }
+    //   } />
+    // }
 
     return (
       <>
