@@ -12,7 +12,7 @@ class CreateComment extends Component {
     super(props)
 
     this.state = {
-      owner: '',
+      ownerName: props.user.username,
       content: '',
       created: false
     }
@@ -27,14 +27,14 @@ class CreateComment extends Component {
     event.preventDefault()
 
     const { msgAlert, user, postId, updateComments } = this.props
-    const { owner, content } = this.state
+    const { content } = this.state
 
     createComment(this.state, user, postId)
       .then(res => {
         console.log(res)
         return res
       })
-      .then(res => updateComments({ owner, content }))
+      .then(() => updateComments({ owner: user._id, content }))
       .then(() => {
         msgAlert({
           heading: 'Comment Created',

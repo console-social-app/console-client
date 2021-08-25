@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Comment from './Comment'
 
 class Comments extends Component {
   constructor (props) {
@@ -27,14 +28,17 @@ class Comments extends Component {
   // }
 
   render () {
-    const { comments } = this.props
+    const { comments, msgAlert, user } = this.props
     console.log(comments)
     return (
       <ul>
         {comments.map(comment => (
           <li key={comment._id}>
-            <h4>{comment.owner}</h4>
-            <p>{comment.content}</p>
+            <Comment
+              msgAlert={msgAlert}
+              user={user}
+              comment={comment}
+            />
           </li>
         ))}
       </ul>

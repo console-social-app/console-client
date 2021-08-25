@@ -33,12 +33,14 @@ class PostContainer extends Component {
 
   render () {
     const { msgAlert, user, post } = this.props
+    console.log(post)
     const { showComments, comments } = this.state
     const commentsJsx = (
       <Comments msgAlert={msgAlert} user={user} comments={comments}/>
     )
     return (
       <>
+        <h3>{post.owner.username}</h3>
         <Link to={`/posts/${post._id}`}>{post.title}</Link>
         <p>{post.content}</p>
         <CreateComment

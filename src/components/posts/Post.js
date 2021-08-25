@@ -71,6 +71,7 @@ class Post extends Component {
 
     return (
       <>
+        <h4>{post.owner.username}</h4>
         <h4>{post.title}</h4>
         <p>{post.content}</p>
         <button onClick={this.destroy}>Delete post</button>
