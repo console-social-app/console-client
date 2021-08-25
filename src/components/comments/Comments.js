@@ -31,17 +31,17 @@ class Comments extends Component {
     const { comments, msgAlert, user } = this.props
     console.log(comments)
     return (
-      <ul>
+      <div>
         {comments.map(comment => (
-          <li key={comment._id}>
+          <div className="border" key={comment._id}>
             <Comment
               msgAlert={msgAlert}
               user={user}
               comment={comment}
             />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     )
   }
 }

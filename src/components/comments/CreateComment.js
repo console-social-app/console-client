@@ -34,7 +34,7 @@ class CreateComment extends Component {
         console.log(res)
         return res
       })
-      .then(() => updateComments({ owner: user._id, content }))
+      .then(() => updateComments({ ownerName: user.username, owner: user._id, content }))
       .then(() => {
         msgAlert({
           heading: 'Comment Created',
