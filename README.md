@@ -28,7 +28,7 @@ Potential User Stories...
 ## Wireframe
 
  <a href="https://github.com/GA-Project/project-client/edit/development">
-    <img src="https://imgur.com/TIZIxtF">
+    <img src="https://i.imgur.com/TIZIxtF.png">
   </a>
 
 * [Wireframe](https://imgur.com/TIZIxtF)
