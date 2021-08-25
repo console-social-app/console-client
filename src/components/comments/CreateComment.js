@@ -26,15 +26,15 @@ class CreateComment extends Component {
   onCreateComment = (event) => {
     event.preventDefault()
 
-    const { msgAlert, history, user, postId } = this.props
+    const { msgAlert, user, postId, updateComments } = this.props
+    const { owner, content } = this.state
 
     createComment(this.state, user, postId)
       .then(res => {
         console.log(res)
         return res
       })
-      .then(res => this.setState({ commentId: res.data.comment._id }))
-      .then(() => history.push('/'))
+      .then(res => updateComments({ owner, content }))
       .then(() => {
         msgAlert({
           heading: 'Comment Created',
