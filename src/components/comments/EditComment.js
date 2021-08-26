@@ -1,66 +1,27 @@
 import React, { Component } from 'react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 
-import { deleteComment, showComment } from '../../api/comments'
-import { showCommentFailure, deleteCommentSuccess, deleteCommentFailure } from '../AutoDismissAlert/messages'
-
-import Spinner from 'react-bootstrap/Spinner'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class EditComment extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      comment: null,
-      deleted: false
+      deleted: false,
+      content: ''
     }
   }
 
-  componentDidMount () {
-    const { user, match, msgAlert } = this.props
-
-    showComment(user, match.params.id)
-      .then(res => this.setState({ comment: res.data.comment }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Create Comment',
-          message: showCommentFailure + err.message,
-          variant: 'danger'
-        })
-      })
-  }
-
-  destroy = () => {
-    const { user, match, msgAlert } = this.props
-    deleteComment(user, match.params.id)
-      .then(() => {
-        msgAlert({
-          heading: 'Comment Deleted',
-          message: deleteCommentSuccess,
-          variant: 'success'
-        })
-      })
-      .then(() => this.setState({ deleted: true }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Delete Comment',
-          message: deleteCommentFailure + err.message,
-          variant: 'danger'
-        })
-      })
-  }
+  handleChange = (event) =>
+    this.setState({
+      [event.target.name]: event.target.value
+    })
 
   render () {
-    const { comment, deleted } = this.state
-
-    if (!comment) {
-      return (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )
-    }
-
+    const { deleted } = this.state
+    const { comment } = this.props
     if (deleted) {
       return <Redirect to={
         { pathname: '/comments' }
@@ -69,13 +30,19 @@ class EditComment extends Component {
 
     return (
       <>
-        <h4>{comment.title}</h4>
-        <p>{comment.content}</p>
-        <button onClick={this.destroy}>Delete comment</button>
-        <Link to={`/comments/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
-        </Link>
-        <Link to="/comments">Cancel</Link>
+        <Form onSubmit={this.onEditComment}>
+          <Form.Group controlId='content'>
+            <Form.Label>Edit Comment</Form.Label>
+            <Form.Control
+              required
+              name='content'
+              value={comment.content}
+              placeholder='Comment'
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Button variant='primary' type='submit'>Create</Button>
+        </Form>
       </>
     )
   }

@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
+
+import { Redirect, withRouter } from 'react-router-dom'
 
 import { deleteComment } from '../../api/comments'
 import { deleteCommentSuccess, deleteCommentFailure } from '../AutoDismissAlert/messages'
+import EditComment from './EditComment'
 
 class Comment extends Component {
   constructor (props) {
@@ -10,8 +12,13 @@ class Comment extends Component {
 
     this.state = {
       comment: null,
+      showEdit: false,
       deleted: false
     }
+  }
+
+  toggleEdit = () => {
+    this.setState((prevState) => ({ showEdit: !prevState.showEdit }))
   }
 
   destroy = () => {
@@ -36,15 +43,25 @@ class Comment extends Component {
   }
 
   render () {
-    const { deleted } = this.state
-    const { comment, user } = this.props
+    const { deleted, showEdit } = this.state
+    const { comment, user, msgAlert, postId } = this.props
 
     const modifyButtonsJsx = (
       <>
         <button onClick={this.destroy}>Delete comment</button>
-        <Link to={`/comments/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
-        </Link>
+        <button onClick={this.toggleEdit}>Edit</button>
+      </>
+    )
+
+    const editCommentJsx = (
+      <>
+        <EditComment
+          msgAlert={msgAlert}
+          user={user}
+          comment={comment}
+          postId={postId}
+        />
+        <button onClick={this.toggleEdit}>Cancel</button>
       </>
     )
 
@@ -57,7 +74,7 @@ class Comment extends Component {
     console.log(comment.ownerName)
     return (
       <>
-        <p><b>{comment.ownerName}</b>: {comment.content}</p>
+        <div><b>{comment.ownerName}</b>: {showEdit ? editCommentJsx : comment.content}</div>
         {comment.owner === user._id ? modifyButtonsJsx : ''}
       </>
     )
