@@ -19,7 +19,7 @@ class PostContainer extends Component {
   }
 
   goToPost = (e) => {
-    if (!e.target.classList.contains('postContainer')) return
+    if (!e.target.classList.contains('post')) return
     const { post, history } = this.props
     history.push(`/posts/${post._id}`)
   }
@@ -56,7 +56,7 @@ class PostContainer extends Component {
       </>
     )
     return (
-      <div className="postContainer" onClick={e => this.goToPost(e)}>
+      <div className="post postContainer" onClick={e => this.goToPost(e)}>
         <Link className="postOwner">{post.owner.username}</Link>
         <p className="post postTitle">{post.title}</p>
         <div className="post postContent">
