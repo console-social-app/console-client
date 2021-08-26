@@ -23,7 +23,6 @@ class Comment extends Component {
 
   destroy = () => {
     const { user, msgAlert, postId, comment } = this.props
-    console.log(comment)
     deleteComment(user, comment._id, postId)
       .then(() => {
         msgAlert({
@@ -44,7 +43,7 @@ class Comment extends Component {
 
   render () {
     const { deleted, showEdit } = this.state
-    const { comment, user, msgAlert, postId } = this.props
+    const { comment, user, msgAlert, postId, updateComments } = this.props
 
     const modifyButtonsJsx = (
       <>
@@ -56,10 +55,12 @@ class Comment extends Component {
     const editCommentJsx = (
       <>
         <EditComment
+          toggleEdit={this.toggleEdit}
+          updateComments={updateComments}
           msgAlert={msgAlert}
-          user={user}
           comment={comment}
           postId={postId}
+          user={user}
         />
         <button onClick={this.toggleEdit}>Cancel</button>
       </>
@@ -71,7 +72,6 @@ class Comment extends Component {
       } />
     }
 
-    console.log(comment.ownerName)
     return (
       <>
         <div><b>{comment.ownerName}</b>: {showEdit ? editCommentJsx : comment.content}</div>

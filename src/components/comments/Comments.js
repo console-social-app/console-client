@@ -11,33 +11,18 @@ class Comments extends Component {
     }
   }
 
-  // componentDidMount () {
-  //   const { user, msgAlert } = this.props
-
-  //   indexComments(user)
-  //     .then(res => this.setState({
-  //       comments: res.data.comments
-  //     }))
-  //     .catch(err => {
-  //       msgAlert({
-  //         heading: 'Couldn\'t Create Comment',
-  //         message: indexCommentsFailure + err.message,
-  //         variant: 'danger'
-  //       })
-  //     })
-  // }
-
   render () {
-    const { comments, msgAlert, user, postId } = this.props
+    const { comments, msgAlert, user, postId, updateComments } = this.props
     return (
       <div>
         {comments.map((comment) => (
           <div key={comment._id}>
             <Comment
+              updateComments={updateComments}
               msgAlert={msgAlert}
-              user={user}
               comment={comment}
               postId={postId}
+              user={user}
             />
           </div>
         ))}

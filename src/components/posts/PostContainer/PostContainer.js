@@ -25,9 +25,17 @@ class PostContainer extends Component {
   }
 
   updateComments = (comment) => {
-    this.setState(prevState => {
-      return { comments: [comment, ...prevState.comments] }
-    })
+    const { comments } = this.state
+    const index = comments.findIndex(el => el._id === comment._id)
+    if (index >= 0) {
+      const newComments = [...comments]
+      newComments.splice(index, 1, comment)
+      this.setState({ comments: newComments })
+    } else {
+      this.setState(prevState => {
+        return { comments: [comment, ...prevState.comments] }
+      })
+    }
   }
 
   componentDidMount () {
@@ -53,6 +61,7 @@ class PostContainer extends Component {
           postId={post._id}
         />
         <Comments
+          updateComments={this.updateComments}
           msgAlert={msgAlert}
           user={user}
           comments={comments}

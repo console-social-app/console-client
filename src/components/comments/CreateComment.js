@@ -59,13 +59,6 @@ class CreateComment extends Component {
   render () {
     const { content } = this.state
 
-    // if (created) {
-    //   console.log('test')
-    //   return <Redirect to={
-    //     { pathname: '/posts/' }
-    //   } />
-    // }
-
     return (
       <>
         <Form onSubmit={this.onCreateComment}>
