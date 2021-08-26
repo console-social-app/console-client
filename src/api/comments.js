@@ -13,7 +13,8 @@ export const createComment = (comment, user, postId) => {
       comment: {
         ownerName: comment.ownerName,
         owner: comment.owner,
-        content: comment.content
+        content: comment.content,
+        _id: comment._id
       }
     }
   })

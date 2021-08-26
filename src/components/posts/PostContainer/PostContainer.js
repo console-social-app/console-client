@@ -26,13 +26,13 @@ class PostContainer extends Component {
 
   updateComments = (comment) => {
     this.setState(prevState => {
-      return { comments: [...prevState.comments, comment] }
+      return { comments: [comment, ...prevState.comments] }
     })
   }
 
   componentDidMount () {
     const { post } = this.props
-    this.setState({ comments: post.comments })
+    this.setState({ comments: post.comments.reverse() })
   }
 
   toggleComments = () => {
@@ -52,7 +52,12 @@ class PostContainer extends Component {
           user={user}
           postId={post._id}
         />
-        <Comments msgAlert={msgAlert} user={user} comments={comments}/>
+        <Comments
+          msgAlert={msgAlert}
+          user={user}
+          comments={comments}
+          postId={post._id}
+        />
       </>
     )
     return (

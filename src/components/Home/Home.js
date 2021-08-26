@@ -34,7 +34,7 @@ class Home extends Component {
 
   updatePosts = (post) => {
     this.setState(prevState => {
-      return { posts: [...prevState.posts, post] }
+      return { posts: [post, ...prevState.posts] }
     })
   }
 

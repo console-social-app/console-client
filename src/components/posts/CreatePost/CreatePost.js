@@ -37,12 +37,16 @@ class CreatePost extends Component {
     const { msgAlert, history, user, updatePosts } = this.props
 
     createPost(this.state, user)
-      .then(res => this.setState({ postId: res.data.post._id }))
-      .then(updatePosts({
+      .then(res => {
+        this.setState({ postId: res.data.post._id })
+        return res
+      })
+      .then(res => updatePosts({
         owner: user,
         title: this.state.title,
         content: this.state.content,
-        comments: []
+        comments: [],
+        _id: res.data.post._id
       }))
       .then(() => history.push('/home'))
       .then(() => {
