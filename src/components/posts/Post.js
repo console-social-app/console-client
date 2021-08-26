@@ -4,6 +4,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 import { deletePost, showPost } from '../../api/posts'
 import { showPostFailure, deletePostSuccess, deletePostFailure } from '../AutoDismissAlert/messages'
 
+import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 
 class Post extends Component {
@@ -56,10 +57,10 @@ class Post extends Component {
 
     const modifyButtonsJsx = (
       <>
-        <button onClick={this.destroy}>Delete post</button>
         <Link to={`/posts/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
+          <Button size='sm' variant='primary'>Edit</Button>
         </Link>
+        <Button size='sm' variant='danger' onClick={this.destroy}>Delete post</Button>
       </>
     )
 
@@ -82,10 +83,10 @@ class Post extends Component {
         <h4>{post.owner.username}</h4>
         <h4>{post.title}</h4>
         <p>{post.content}</p>
-        {post.owner._id === user._id ? modifyButtonsJsx : ''}
         <Link to="/home">
-          <button>Go back</button>
+          <Button size='sm' className='btn'>Go back</Button>
         </Link>
+        {post.owner._id === user._id ? modifyButtonsJsx : ''}
       </>
     )
   }

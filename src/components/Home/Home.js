@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { indexPosts } from '../../api/posts'
 import { indexPostsFailure } from '../AutoDismissAlert/messages'
 
-import PostContainer from '../posts/PostContainer'
+import PostContainer from '../posts/PostContainer/PostContainer'
 import CreatePost from '../posts/CreatePost'
 
 class Home extends Component {
