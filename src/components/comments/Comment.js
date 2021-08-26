@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react'
 
 import { Redirect, withRouter } from 'react-router-dom'
 
-import { deleteComment } from '../../api/comments'
-import { deleteCommentSuccess, deleteCommentFailure } from '../AutoDismissAlert/messages'
+// import specific function form api comment
 import EditComment from './EditComment'
+import { deleteComment } from '../../api/comments'
 
 class Comment extends Component {
   constructor (props) {
@@ -21,25 +21,16 @@ class Comment extends Component {
     this.setState((prevState) => ({ showEdit: !prevState.showEdit }))
   }
 
-  destroy = () => {
-    const { user, msgAlert, postId, comment } = this.props
-    deleteComment(user, comment._id, postId)
-      .then(() => {
-        msgAlert({
-          heading: 'Comment Deleted',
-          message: deleteCommentSuccess,
-          variant: 'success'
-        })
-      })
-      .then(() => this.setState({ deleted: true }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Delete Comment',
-          message: deleteCommentFailure + err.message,
-          variant: 'danger'
-        })
-      })
+  // Delete function for comment
+  onDestroyComment = (event) => {
+    event.preventDefault()
+    const { comment, user, postId, updateComments } = this.props
+    // call deleteComment = (user, postId, commentId) => {
+    deleteComment(user, postId, comment._id)
+    updateComments(comment._id)
   }
+
+  //
 
   render () {
     const { deleted, showEdit } = this.state
@@ -47,7 +38,8 @@ class Comment extends Component {
 
     const modifyButtonsJsx = (
       <>
-        <button onClick={this.destroy}>Delete comment</button>
+        {/* Button for delete show up */}
+        <button onClick={this.onDestroyComment}>Delete comment</button>
         <button onClick={this.toggleEdit}>Edit</button>
       </>
     )
