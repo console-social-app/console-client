@@ -79,6 +79,7 @@ class PostContainer extends Component {
           user={user}
           comments={comments}
           postId={post._id}
+          postOwner={post.owner._id}
         />
       </>
     )

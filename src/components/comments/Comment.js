@@ -34,8 +34,9 @@ class Comment extends Component {
 
   render () {
     const { deleted, showEdit } = this.state
-    const { comment, user, msgAlert, postId, updateComments } = this.props
-
+    const { comment, user, msgAlert, postId, postOwner, updateComments } = this.props
+    const showButtons = (comment.owner === user._id || postOwner === user._id)
+    console.log(comment.owner, user._id, postOwner, showButtons)
     const modifyButtonsJsx = (
       <>
         {/* Button for delete show up */}
@@ -67,7 +68,7 @@ class Comment extends Component {
     return (
       <>
         <div><b>{comment.ownerName}</b>: {showEdit ? editCommentJsx : comment.content}</div>
-        {comment.owner === user._id ? modifyButtonsJsx : ''}
+        { showButtons ? modifyButtonsJsx : '' }
       </>
     )
   }

@@ -46,7 +46,8 @@ export const deleteComment = (user, postId, commentId) => {
       Authorization: `Bearer ${user.token}`
     },
     data: {
-      commentId: commentId
+      commentId: commentId,
+      userId: user._id
     }
   })
 }
