@@ -43,7 +43,6 @@ class PostContainer extends Component {
 
   render () {
     const { msgAlert, user, post } = this.props
-    console.log(post)
     const { showComments, comments } = this.state
     const commentsJsx = (
       <>
@@ -61,7 +60,6 @@ class PostContainer extends Component {
         <Link className="postOwner">{post.owner.username}</Link>
         <p className="post postTitle">{post.title}</p>
         <div className="post postContent">
-          {console.log(post)}
           {post.content.split('\n').map((line, index) => {
             return (
               <p style={{ margin: 0 }} key={index}>

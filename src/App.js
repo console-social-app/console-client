@@ -4,7 +4,7 @@
 // React is required for JSX
 import React, { Component } from 'react'
 // Destructuring Route component from react-router-dom
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 // import v4 and rename it uuid
 import { v4 as uuid } from 'uuid'
 
@@ -15,7 +15,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import CreatePost from './components/posts/CreatePost'
+import CreatePost from './components/posts/CreatePost/CreatePost'
 import EditPost from './components/posts/EditPost'
 import Home from './components/Home/Home'
 import Post from './components/posts/Post'
@@ -56,6 +56,15 @@ class App extends Component {
 	      msgAlerts: [...state.msgAlerts, { heading, message, variant, id }]
 	    }
 	  })
+	}
+
+	componentDidMount () {
+	  const { history } = this.props
+	  const user = JSON.parse(window.localStorage.getItem('user'))
+	  if (window) {
+	    this.setUser(user)
+	    history.push('/home')
+	  }
 	}
 
 	render () {
@@ -137,4 +146,4 @@ class App extends Component {
 	}
 }
 
-export default App
+export default withRouter(App)

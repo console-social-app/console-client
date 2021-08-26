@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createPost } from '../../api/posts'
-import { createPostSuccess, createPostFailure } from '../AutoDismissAlert/messages'
+import { createPost } from '../../../api/posts'
+import { createPostSuccess, createPostFailure } from '../../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -11,6 +11,9 @@ import Editor from 'react-simple-code-editor'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
+
+import './CreatePost.scss'
+import '../PostContainer/PostContainer.scss'
 
 class CreatePost extends Component {
   constructor (props) {
@@ -63,33 +66,30 @@ class CreatePost extends Component {
 
     return (
       <>
-        <h3>Create Post</h3>
-        <Form onSubmit={this.onCreatePost}>
-          <Form.Group controlId='title'>
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              required
-              name='title'
-              value={title}
-              placeholder='Post Title'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId='content'>
-            <Form.Label>Content</Form.Label>
-            <Editor className="border"
-              value={this.state.content}
-              onValueChange={content => this.setState({ content })}
-              highlight={content => highlight(content, languages.js)}
-              padding={10}
-              style={{
-                fontFamily: '"Fira code", "Fira Mono", monospace',
-                fontSize: 12
-              }}
-            />
-          </Form.Group>
-          <Button variant='primary' type='submit'>Create</Button>
-        </Form>
+        <h5 id="createPostHeader">Create Post</h5>
+        <div className='postContainer'>
+          <Form onSubmit={this.onCreatePost}>
+            <Form.Group controlId='title'>
+              <Form.Control
+                required
+                id='titleInput'
+                name='title'
+                value={title}
+                placeholder='Post Title'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId='content'>
+              <Editor id='codeEditor' className="border"
+                value={this.state.content}
+                onValueChange={content => this.setState({ content })}
+                highlight={content => highlight(content, languages.js)}
+                padding={10}
+              />
+            </Form.Group>
+            <Button id='createPostButton' variant='primary' type='submit'>Create</Button>
+          </Form>
+        </div>
       </>
     )
   }

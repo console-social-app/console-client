@@ -4,7 +4,7 @@ import { indexPosts } from '../../api/posts'
 import { indexPostsFailure } from '../AutoDismissAlert/messages'
 
 import PostContainer from '../posts/PostContainer/PostContainer'
-import CreatePost from '../posts/CreatePost'
+import CreatePost from '../posts/CreatePost/CreatePost'
 
 class Home extends Component {
   constructor (props) {

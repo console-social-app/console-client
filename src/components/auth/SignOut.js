@@ -16,7 +16,10 @@ class SignOut extends Component {
           variant: 'success'
         })
       )
-      .finally(() => history.push('/'))
+      .finally(() => {
+        if (window) window.localStorage.removeItem('user')
+      })
+      .finally(() => history.push('/sign-in'))
       .finally(() => clearUser())
   }
 

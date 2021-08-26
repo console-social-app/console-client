@@ -11,22 +11,23 @@
   }
 
   & > .post {
-    margin: 0 20px;
+    margin: 0 10px;
     border-radius: 10px;
     overflow-wrap: break-word;
   }
 
   & > .postContent {
-    margin: 5px 20px;
+    margin: 5px 10px;
     padding: 0 10px;
-    font-family: 'Inconsolata', monospace;
+    font-family: "Fira code", "Fira Mono", monospace;
+    font-size: 12px;
     color: white;
-    background-color: black;
+    background-color: #192734;
   }
 
   & > .commentButton {
     border-color: transparent;
     border-radius: 10px;
-    margin: 0 0 5px 20px;
+    margin: 0 0 5px 10px;
   }
 }

@@ -29,7 +29,6 @@ class Comments extends Component {
 
   render () {
     const { comments, msgAlert, user } = this.props
-    console.log(comments)
     return (
       <div>
         {comments.map(comment => (
