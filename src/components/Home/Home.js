@@ -32,12 +32,18 @@ class Home extends Component {
       })
   }
 
+  updatePosts = (post) => {
+    this.setState(prevState => {
+      return { posts: [...prevState.posts, post] }
+    })
+  }
+
   render () {
     const { posts } = this.state
     const { user, msgAlert } = this.props
     return (
       <div>
-        <CreatePost msgAlert={msgAlert} user={user} />
+        <CreatePost updatePosts={this.updatePosts} msgAlert={msgAlert} user={user} />
         {posts.map(post => (
           <div key={post._id}>
             <PostContainer
