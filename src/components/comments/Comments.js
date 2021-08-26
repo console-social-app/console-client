@@ -28,15 +28,16 @@ class Comments extends Component {
   // }
 
   render () {
-    const { comments, msgAlert, user } = this.props
+    const { comments, msgAlert, user, postId } = this.props
     return (
       <div>
-        {comments.map(comment => (
+        {comments.map((comment) => (
           <div key={comment._id}>
             <Comment
               msgAlert={msgAlert}
               user={user}
               comment={comment}
+              postId={postId}
             />
           </div>
         ))}

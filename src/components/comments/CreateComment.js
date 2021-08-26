@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 import { createComment } from '../../api/comments'
 import { createCommentFailure } from '../AutoDismissAlert/messages'
+import uniqid from 'uniqid'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -18,6 +19,10 @@ class CreateComment extends Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({ _id: uniqid() })
+  }
+
   handleChange = (event) =>
     this.setState({
       [event.target.name]: event.target.value
@@ -27,16 +32,27 @@ class CreateComment extends Component {
     event.preventDefault()
 
     const { msgAlert, user, postId, updateComments } = this.props
-    const { content } = this.state
+    const { content, _id } = this.state
 
     createComment(this.state, user, postId)
-      .then(() => updateComments({ ownerName: user.username, owner: user._id, content }))
+      .then(() =>
+        updateComments({
+          ownerName: user.username,
+          owner: user._id,
+          content,
+          _id
+        })
+      )
       .catch((err) => {
         msgAlert({
           heading: 'Couldn\'t Create Comment',
           message: createCommentFailure + err.message,
           variant: 'danger'
         })
+      })
+
+      .finally(() => {
+        this.setState({ _id: uniqid() })
       })
   }
 

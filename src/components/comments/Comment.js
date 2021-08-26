@@ -15,8 +15,9 @@ class Comment extends Component {
   }
 
   destroy = () => {
-    const { user, match, msgAlert } = this.props
-    deleteComment(user, match.params.id)
+    const { user, msgAlert, postId, comment } = this.props
+    console.log(comment)
+    deleteComment(user, comment._id, postId)
       .then(() => {
         msgAlert({
           heading: 'Comment Deleted',
