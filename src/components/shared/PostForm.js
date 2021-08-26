@@ -27,7 +27,6 @@ const PostForm = ({ post, handleSubmit, handleChange }) => (
     </Form.Group>
     <Button type="submit">Submit</Button>
   </Form>
-
 )
 
 export default PostForm

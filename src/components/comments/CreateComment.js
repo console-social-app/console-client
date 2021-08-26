@@ -30,10 +30,6 @@ class CreateComment extends Component {
     const { content } = this.state
 
     createComment(this.state, user, postId)
-      .then(res => {
-        console.log(res)
-        return res
-      })
       .then(() => updateComments({ ownerName: user.username, owner: user._id, content }))
       .catch((err) => {
         msgAlert({

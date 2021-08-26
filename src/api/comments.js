@@ -3,7 +3,6 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const createComment = (comment, user, postId) => {
-  console.log(comment, user, postId)
   return axios({
     method: 'POST',
     url: apiUrl + `/posts/${postId}/comments/`,

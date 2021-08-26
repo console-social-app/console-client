@@ -13,7 +13,8 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      checked: false
     }
   }
 
@@ -22,13 +23,25 @@ handleChange = (event) =>
     [event.target.name]: event.target.value
   })
 
+toggleChecked = () => {
+  this.setState(prevState => ({ checked: !prevState.checked }))
+}
+
 onSignIn = (event) => {
   event.preventDefault()
 
   const { msgAlert, history, setUser } = this.props
+  const { checked } = this.state
 
   signIn(this.state)
-    .then((res) => setUser(res.data.user))
+    .then((res) => {
+      setUser(res.data.user)
+      return res.data.user
+    })
+    .then(user => {
+      const userJSON = JSON.stringify(user)
+      if (window && checked) window.localStorage.setItem('user', userJSON)
+    })
     .then(() =>
       msgAlert({
         heading: 'Sign In Success',
@@ -48,7 +61,7 @@ onSignIn = (event) => {
 }
 
 render () {
-  const { email, password } = this.state
+  const { email, password, checked } = this.state
 
   return (
     <div className='row'>
@@ -78,6 +91,13 @@ render () {
             />
           </Form.Group>
           <Button variant='primary' type='submit'>Submit</Button>
+          <Form.Check
+            type='checkbox'
+            id='default-checkbox'
+            label='Keep me logged in'
+            checked={checked}
+            onChange={this.toggleChecked}
+          />
         </Form>
       </div>
     </div>
