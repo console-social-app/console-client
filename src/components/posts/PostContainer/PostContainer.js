@@ -32,7 +32,7 @@ class PostContainer extends Component {
 
   componentDidMount () {
     const { post } = this.props
-    this.setState({ comments: post.comments.reverse() })
+    this.setState({ comments: post.comments })
   }
 
   toggleComments = () => {

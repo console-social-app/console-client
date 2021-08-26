@@ -29,8 +29,10 @@ export const updateComment = (comment, user, postId) => {
     },
     data: {
       comment: {
+        ownerName: comment.ownerName,
         owner: comment.owner,
-        content: comment.content
+        content: comment.content,
+        _id: comment._id
       }
     }
   })
