@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import CreateComment from '../comments/CreateComment'
-import Comments from '../comments/Comments'
+import CreateComment from '../../comments/CreateComment'
+import Comments from '../../comments/Comments'
+
+import Button from 'react-bootstrap/Button'
+
+import './PostContainer.scss'
 
 class PostContainer extends Component {
   constructor (props) {
@@ -15,7 +19,7 @@ class PostContainer extends Component {
   }
 
   goToPost = (e) => {
-    if (!e.target.classList.contains('post')) return
+    if (!e.target.classList.contains('postContainer')) return
     const { post, history } = this.props
     history.push(`/posts/${post._id}`)
   }
@@ -53,13 +57,13 @@ class PostContainer extends Component {
       </>
     )
     return (
-      <div className="post" onClick={e => this.goToPost(e)}>
-        <Link>{post.owner.username}: </Link>
-        <Link to={`/posts/${post._id}`}>{post.title}</Link>
-        <p>{post.content}</p>
-        <button onClick={this.toggleComments}>
+      <div className="postContainer" onClick={e => this.goToPost(e)}>
+        <Link className="postOwner">{post.owner.username}</Link>
+        <p className="post postTitle">{post.title}</p>
+        <p className="post postContent">{post.content}</p>
+        <Button className="commentButton"size='sm' variant='outline-primary' onClick={this.toggleComments}>
           {showComments ? 'Hide Comments' : `Comments: ${comments.length}`}
-        </button>
+        </Button>
         {showComments ? commentsJsx : ''}
       </div>
     )

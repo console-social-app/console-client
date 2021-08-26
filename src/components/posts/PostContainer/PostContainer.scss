@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
+
+.postContainer {
+  border-radius: 15px;
+  background-color: rgba(0,0,0,.05);
+  margin: 20px;
+
+  & > .postOwner {
+    text-decoration: none;
+    margin-left: 20px
+  }
+
+  & > .post {
+    margin: 0 20px;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+  }
+
+  & > .postContent {
+    margin: 5px 20px;
+    padding: 0 10px;
+    font-family: 'Inconsolata', monospace;
+    color: white;
+    background-color: black;
+  }
+
+  & > .commentButton {
+    border-color: transparent;
+    border-radius: 10px;
+    margin: 0 0 5px 20px;
+  }
+}
