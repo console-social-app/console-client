@@ -60,7 +60,16 @@ class PostContainer extends Component {
       <div className="postContainer" onClick={e => this.goToPost(e)}>
         <Link className="postOwner">{post.owner.username}</Link>
         <p className="post postTitle">{post.title}</p>
-        <p className="post postContent">{post.content}</p>
+        <div className="post postContent">
+          {console.log(post)}
+          {post.content.split('\n').map((line, index) => {
+            return (
+              <p style={{ margin: 0 }} key={index}>
+                {line.replace(' ', '\u00A0')}
+              </p>
+            )
+          })}
+        </div>
         <Button className="commentButton"size='sm' variant='outline-primary' onClick={this.toggleComments}>
           {showComments ? 'Hide Comments' : `Comments: ${comments.length}`}
         </Button>
