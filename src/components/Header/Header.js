@@ -22,7 +22,7 @@ const unauthenticatedOptions = (
 const Header = ({ user }) => (
   <Navbar id="header" expand='md'>
     <Navbar.Brand>
-      <Link to='/home' id="headerTitle">{'{ Social App }'}</Link>
+      <Link to='/home' id="headerTitle">{'{ console }'}</Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
