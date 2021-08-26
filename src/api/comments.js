@@ -41,9 +41,12 @@ export const updateComment = (comment, user, postId) => {
 export const deleteComment = (user, postId, commentId) => {
   return axios({
     method: 'DELETE',
-    url: `/comments/${commentId}`,
+    url: apiUrl + `/posts/${postId}/comments/`,
     headers: {
       Authorization: `Bearer ${user.token}`
+    },
+    data: {
+      commentId: commentId
     }
   })
 }

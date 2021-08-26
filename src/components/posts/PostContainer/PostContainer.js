@@ -26,17 +26,30 @@ class PostContainer extends Component {
 
   updateComments = (comment) => {
     const { comments } = this.state
-    const index = comments.findIndex(el => el._id === comment._id)
-    if (index >= 0) {
-      const newComments = [...comments]
-      newComments.splice(index, 1, comment)
+    const newComments = [...comments]
+    if (typeof comment === 'string') {
+      console.log('test', comment)
+      // find the index of the comment to delete
+      const index = comments.findIndex(el => el._id === comment)
+      // if it finds the comment it will remove it form the comments array
+      newComments.splice(index, 1)
+      // update comments array via state
       this.setState({ comments: newComments })
     } else {
-      this.setState(prevState => {
-        return { comments: [comment, ...prevState.comments] }
-      })
+      const index = comments.findIndex(el => el._id === comment._id)
+      if (index >= 0) {
+        newComments.splice(index, 1, comment)
+
+        this.setState({ comments: newComments })
+      } else {
+        this.setState(prevState => {
+          return { comments: [comment, ...prevState.comments] }
+        })
+      }
     }
   }
+
+  // new function to delete a comment
 
   componentDidMount () {
     const { post } = this.props
