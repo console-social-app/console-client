@@ -72,7 +72,7 @@ class CreatePost extends Component {
             <Form.Group controlId='title'>
               <Form.Control
                 required
-                id='titleInput'
+                className='titleInput'
                 name='title'
                 value={title}
                 placeholder='Post Title'
@@ -80,7 +80,7 @@ class CreatePost extends Component {
               />
             </Form.Group>
             <Form.Group controlId='content'>
-              <Editor id='codeEditor' className="border"
+              <Editor className="border codeEditor"
                 value={this.state.content}
                 onValueChange={content => this.setState({ content })}
                 highlight={content => highlight(content, languages.js)}

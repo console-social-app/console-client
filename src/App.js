@@ -85,7 +85,7 @@ class App extends Component {
 	          deleteAlert={this.deleteAlert}
 	        />
 	      ))}
-	      <main className='container border col-6'>
+	      <main className='container col-sm-12 col-lg-6'>
 	        {/* Pass in 'msgAlert' and 'setUser' methods as props */}
 	        <Route
 	          path='/sign-up'
