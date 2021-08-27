@@ -26,6 +26,10 @@ class Profile extends Component {
         console.log(res)
         return res
       })
+      .then(res => {
+        console.log(res)
+        return res
+      })
       .then(res => this.setState({
         posts: res.data.posts.reverse()
       }))
