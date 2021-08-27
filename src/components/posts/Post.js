@@ -6,6 +6,7 @@ import { showPostFailure, deletePostSuccess, deletePostFailure } from '../AutoDi
 
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
+import PostContainer from './PostContainer/PostContainer'
 
 class Post extends Component {
   constructor (props) {
@@ -53,7 +54,7 @@ class Post extends Component {
 
   render () {
     const { post, deleted } = this.state
-    const { user } = this.props
+    const { user, msgAlert } = this.props
 
     const modifyButtonsJsx = (
       <>
@@ -80,9 +81,12 @@ class Post extends Component {
 
     return (
       <>
-        <h4>{post.owner.username}</h4>
-        <h4>{post.title}</h4>
-        <p>{post.content}</p>
+        <PostContainer
+          msgAlert={msgAlert}
+          user={user}
+          post={post}
+          comments={post.comments}
+        />
         <Link to="/home">
           <Button size='sm' className='btn'>Go back</Button>
         </Link>

@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // API request
-import { updatePost, showPost } from '../../api/posts'
-import PostForm from '../shared/PostForm'
+import { updatePost, showPost } from '../../../api/posts'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
+import Editor from 'react-simple-code-editor'
+import { highlight, languages } from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-clike'
+import 'prismjs/components/prism-javascript'
+
+import './EditPost.scss'
 
 class UpdatePost extends Component {
   constructor (props) {
@@ -63,14 +71,38 @@ class UpdatePost extends Component {
   }
 
   render () {
+    const { post } = this.state
+    const { match } = this.props
+
     return (
       <>
-        <h3>Update One Post Page</h3>
-        <PostForm
-          post={this.state.post}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-        />
+        <h5 id="updatePostHeader">Edit Post</h5>
+        <div className='postContainer'>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId='title'>
+              <Form.Control
+                required
+                className='titleInput'
+                name='title'
+                value={post.title}
+                placeholder='Post Title'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId='content'>
+              <Editor className="border codeEditor"
+                value={post.content}
+                onValueChange={content => this.setState({ content })}
+                highlight={content => highlight(content, languages.js)}
+                padding={10}
+              />
+            </Form.Group>
+            <Button id='updatePostButton' variant='primary' type='submit'>Update</Button>
+          </Form>
+        </div>
+        <Link to={`/posts/${match.params.id}`}>
+          <Button size='sm' className='btn'>Go back</Button>
+        </Link>
       </>
     )
   }

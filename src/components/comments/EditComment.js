@@ -29,13 +29,13 @@ class EditComment extends Component {
 
   onEditComment = (event) => {
     event.preventDefault()
-    const { comment, user, postId, updateComments, toggleEdit } = this.props
+    const { comment, user, postId, updateComments, toggle } = this.props
     const { content } = this.state
     const newComment = { ...comment }
     newComment.content = content
     updateComment(newComment, user, postId)
     updateComments(newComment)
-    toggleEdit()
+    toggle('showEdit')
   }
 
   render () {
@@ -59,7 +59,7 @@ class EditComment extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>Create</Button>
+          <Button variant='primary' type='submit'>Update</Button>
         </Form>
       </>
     )

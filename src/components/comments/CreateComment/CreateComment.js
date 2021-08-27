@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createComment } from '../../api/comments'
-import { createCommentFailure } from '../AutoDismissAlert/messages'
+import { createComment } from '../../../api/comments'
+import { createCommentFailure } from '../../AutoDismissAlert/messages'
 import uniqid from 'uniqid'
 
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+
+import './CreateComment.scss'
 
 class CreateComment extends Component {
   constructor (props) {
@@ -31,7 +32,7 @@ class CreateComment extends Component {
   onCreateComment = (event) => {
     event.preventDefault()
 
-    const { msgAlert, user, postId, updateComments } = this.props
+    const { msgAlert, user, postId, updateComments, showComments, toggleComments } = this.props
     const { content, _id } = this.state
 
     createComment(this.state, user, postId)
@@ -43,6 +44,8 @@ class CreateComment extends Component {
           _id
         })
       )
+      .then(() => { if (!showComments) toggleComments() })
+      .then(() => { this.setState({ content: '' }) })
       .catch((err) => {
         msgAlert({
           heading: 'Couldn\'t Create Comment',
@@ -50,7 +53,6 @@ class CreateComment extends Component {
           variant: 'danger'
         })
       })
-
       .finally(() => {
         this.setState({ _id: uniqid() })
       })
@@ -62,17 +64,17 @@ class CreateComment extends Component {
     return (
       <>
         <Form onSubmit={this.onCreateComment}>
-          <Form.Group controlId='content'>
-            <Form.Label>Add Comment</Form.Label>
+          <Form.Group>
             <Form.Control
               required
+              autoComplete="off"
+              className="commentInput"
               name='content'
               value={content}
-              placeholder='Comment'
+              placeholder='Add Comment'
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>Create</Button>
         </Form>
       </>
     )
