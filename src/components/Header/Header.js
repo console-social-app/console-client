@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink } from 'react-router-dom'
+import SearchBar from '../SearchBar/SearchBar'
 import './Header.scss'
 
 const authenticatedOptions = (
@@ -33,6 +34,7 @@ const Header = ({ user }) => (
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>
+    <SearchBar />
   </Navbar>
 )
 
