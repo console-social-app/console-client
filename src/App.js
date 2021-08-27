@@ -16,7 +16,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreatePost from './components/posts/CreatePost/CreatePost'
-import EditPost from './components/posts/EditPost'
+import EditPost from './components/posts/EditPost/EditPost'
 import Home from './components/Home/Home'
 import Post from './components/posts/Post'
 

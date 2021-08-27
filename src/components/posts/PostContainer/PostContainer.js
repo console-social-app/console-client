@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import CreateComment from '../../comments/CreateComment'
+import CreateComment from '../../comments/CreateComment/CreateComment'
 import Comments from '../../comments/Comments'
 
 import Button from 'react-bootstrap/Button'
@@ -28,12 +28,8 @@ class PostContainer extends Component {
     const { comments } = this.state
     const newComments = [...comments]
     if (typeof comment === 'string') {
-      console.log('test', comment)
-      // find the index of the comment to delete
       const index = comments.findIndex(el => el._id === comment)
-      // if it finds the comment it will remove it form the comments array
       newComments.splice(index, 1)
-      // update comments array via state
       this.setState({ comments: newComments })
     } else {
       const index = comments.findIndex(el => el._id === comment._id)
@@ -43,7 +39,7 @@ class PostContainer extends Component {
         this.setState({ comments: newComments })
       } else {
         this.setState(prevState => {
-          return { comments: [comment, ...prevState.comments] }
+          return { comments: [...prevState.comments, comment] }
         })
       }
     }
@@ -65,19 +61,22 @@ class PostContainer extends Component {
   render () {
     const { msgAlert, user, post } = this.props
     const { showComments, comments } = this.state
+    const s = comments.length === 1 ? '' : 's'
     const commentsJsx = (
       <>
-        <CreateComment
-          updateComments={this.updateComments}
-          msgAlert={msgAlert}
-          user={user}
-          postId={post._id}
-        />
         <Comments
           updateComments={this.updateComments}
           msgAlert={msgAlert}
           user={user}
           comments={comments}
+          postId={post._id}
+        />
+        <CreateComment
+          updateComments={this.updateComments}
+          toggleComments={this.toggleComments}
+          showComments={showComments}
+          msgAlert={msgAlert}
+          user={user}
           postId={post._id}
           postOwner={post.owner._id}
         />
@@ -85,19 +84,20 @@ class PostContainer extends Component {
     )
     return (
       <div className="post postContainer" onClick={e => this.goToPost(e)}>
-        <Link className="postOwner">{post.owner.username}</Link>
-        <p className="post postTitle">{post.title}</p>
+        <p className="post">
+          <Link className="postOwner">{post.owner.username}</Link>{post.title}
+        </p>
         <div className="post postContent">
           {post.content.split('\n').map((line, index) => {
             return (
-              <p style={{ margin: 0 }} key={index}>
+              <p className="code" key={index}>
                 {line.replace(' ', '\u00A0')}
               </p>
             )
           })}
         </div>
-        <Button className="commentButton"size='sm' variant='outline-primary' onClick={this.toggleComments}>
-          {showComments ? 'Hide Comments' : `Comments: ${comments.length}`}
+        <Button className="showComments" size='sm' variant='outline-primary' onClick={this.toggleComments}>
+          {showComments ? 'Hide Comments' : `${comments.length} Comment${s}`}
         </Button>
         {showComments ? commentsJsx : ''}
       </div>

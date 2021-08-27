@@ -1,33 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
 
 .postContainer {
+  padding: 5px 0;
   border-radius: 15px;
   background-color: rgba(0,0,0,.05);
   margin: 20px;
 
-  & > .postOwner {
-    text-decoration: none;
-    margin-left: 10px
+  & * {
+    font-size: 16px;
   }
 
   & > .post {
     margin: 0 10px;
     border-radius: 10px;
     overflow-wrap: break-word;
+
+    & > .postOwner {
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 10px;
+    }
   }
 
-  & > .postContent {
-    margin: 5px 10px;
-    padding: 0 10px;
-    font-family: "Fira code", "Fira Mono", monospace;
-    font-size: 12px;
-    color: white;
-    background-color: #192734;
-  }
-
-  & > .commentButton {
+  & > .showComments {
     border-color: transparent;
     border-radius: 10px;
-    margin: 0 0 5px 10px;
+    margin: -10px 0 5px 10px;
   }
+}
+
+.postContent {
+  margin: 5px 10px !important;
+  padding: 0 10px;
+  font-family: "Fira code", "Fira Mono", monospace;
+  color: white;
+  background-color: #192734;
+}
+
+.code {
+  font-size: 14px;
 }
