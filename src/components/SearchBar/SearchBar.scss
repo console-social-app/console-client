@@ -1,0 +1,35 @@
+:root {
+  --top: 30px;
+}
+
+.searchBar {
+  width: 20vw;
+  z-index: 999;
+  position: absolute;
+  top: var(--top);
+  right: 30px;
+}
+
+.searchInput {
+  width: 20vw;
+  outline: none;
+  border-color: transparent;
+  border-radius: 10px;
+}
+
+.resultContainer {
+  z-index: 998;
+  background-color: #f0f0f0;
+  border-top: unset;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  top: calc(var(--top) + 20px);
+  right: 30px;
+  height: auto;
+  width: 20vw;
+}
+
+.result {
+  z-index: 999;
+  margin: 10px;
+}
