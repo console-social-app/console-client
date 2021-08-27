@@ -18,9 +18,14 @@ class Profile extends Component {
   }
 
   componentDidMount () {
-    const { user, match, msgAlert } = this.props
+    const { user, location, msgAlert } = this.props
+    console.log(location)
 
-    indexUserPosts(user, match.query.user)
+    indexUserPosts(user, location.search)
+      .then(res => {
+        console.log(res)
+        return res
+      })
       .then(res => this.setState({
         posts: res.data.posts.reverse()
       }))
