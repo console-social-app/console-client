@@ -39,6 +39,16 @@ export const showPost = (user, postId) => {
   })
 }
 
+export const indexUserPosts = (user, profileId) => {
+  return axios({
+    method: 'GET',
+    url: `${apiUrl}/posts?user=${profileId}`,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
 export const deletePost = (user, postId) => {
   return axios({
     method: 'DELETE',

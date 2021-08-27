@@ -81,7 +81,7 @@ class Comment extends Component {
       <>
         <div onClick={() => this.toggle('showButtons')}>
           <div className="comment">
-            <Link className="commentOwner">{comment.ownerName}</Link>
+            <Link to={`/posts?user=${comment.owner}`} className="commentOwner">{comment.ownerName}</Link>
             {showEdit ? editCommentJsx : comment.content}
             {renderButtons ? modifyButtonsJsx : ''}
           </div>
