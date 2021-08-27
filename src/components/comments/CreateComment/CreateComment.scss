@@ -1,4 +1,13 @@
 .commentInput {
   border: none !important;
   background-color: transparent;
+  color: white !important;
+
+  &:focus {
+    background-color: transparent;
+  }
+
+  &::placeholder {
+    color: rgba(255,255,255,.7);
+  }
 }

@@ -1,6 +1,6 @@
 {
-  "homepage": "https://github.com/GA-Project/project-client",
-  "name": "project-client",
+  "homepage": "https://console-social-api.github.io/console-client",
+  "name": "console-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -76,6 +76,7 @@ class CreatePost extends Component {
             <Form.Group controlId='title'>
               <Form.Control
                 required
+                autoComplete="off"
                 className='titleInput'
                 name='title'
                 value={title}

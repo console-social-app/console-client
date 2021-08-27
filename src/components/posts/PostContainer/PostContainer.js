@@ -84,7 +84,7 @@ class PostContainer extends Component {
     )
     return (
       <div className="post postContainer" onClick={e => this.goToPost(e)}>
-        <p className="post">
+        <p className="post postTitle">
           <Link
             to={`/posts?user=${post.owner._id}`}
             className="postOwner">{post.owner.username}

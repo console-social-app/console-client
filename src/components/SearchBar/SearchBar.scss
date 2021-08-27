@@ -11,15 +11,21 @@
 }
 
 .searchInput {
+  color: white;
   width: 20vw;
   outline: none;
+  background-color: #133654;
   border-color: transparent;
   border-radius: 10px;
+
+  &::placeholder {
+    color: rgba(255,255,255,.7);
+  }
 }
 
 .resultContainer {
   z-index: 998;
-  background-color: #f0f0f0;
+  background-color: #133654;
   border-top: unset;
   border-radius: 0 0 10px 10px;
   position: absolute;
@@ -32,4 +38,14 @@
 .result {
   z-index: 999;
   margin: 10px;
+}
+
+.resultLink {
+  color: #f28444;
+  font-weight: 500;
+  text-decoration: none;
+
+   &:hover {
+     color: #f26241;
+   }
 }

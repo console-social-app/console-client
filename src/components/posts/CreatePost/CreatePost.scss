@@ -1,22 +1,35 @@
 .codeEditor {
   margin: 0 10px;
   color: white;
-  background-color: #192734;
+  background-color: #133654 !important;
+  border: none !important;
   border-radius: 15px;
   font-family: "Fira code", "Fira Mono", monospace;
   font-size: 12px
 }
 
 .titleInput {
+  color: white !important;
   background-color: transparent;
   border: none !important;
+
+  &:focus {
+    background-color: transparent;
+  }
+
+  &::placeholder {
+    color: rgba(255,255,255,.7);
+  }
 }
 
 #createPostHeader {
+  color: #133654;
   margin: 10px 0 -15px 30px;
 }
 
 #createPostButton {
+  background-color: #f26241;
+  border: 0;
   border-radius: 10px;
   margin: 10px;
 }

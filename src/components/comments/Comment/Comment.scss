@@ -1,18 +1,19 @@
 .comment {
   font-size: 14px;
   margin: 5px 10px;
-  padding-right: 10px;
+  padding: 10px;
   line-height: 25px;
   border-radius: 10px;
   overflow-wrap: break-word;
-  background-color: rgba(0,0,0,0.05);
+  background-color: #133654;
+  color: white;
   width: fit-content;
 
   & > .commentOwner {
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     font-weight: 500;
-    margin: 0 10px;
+    margin-right: 10px;
   }
 }
 
