@@ -19,6 +19,7 @@ import CreatePost from './components/posts/CreatePost/CreatePost'
 import EditPost from './components/posts/EditPost/EditPost'
 import Home from './components/Home/Home'
 import Post from './components/posts/Post'
+import Profile from './components/Profile/Profile'
 
 class App extends Component {
   // Constructor initializes component
@@ -139,6 +140,12 @@ class App extends Component {
 	          exact
 	          path='/posts/:id'
 	          render={() => <Post msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          exact
+	          path='/posts'
+	          render={() => <Profile msgAlert={this.msgAlert} user={user} />}
 	        />
 	      </main>
 	    </>

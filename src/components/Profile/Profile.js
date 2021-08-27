@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import { indexUserPosts } from '../../api/posts'
 import { indexPostsFailure } from '../AutoDismissAlert/messages'
@@ -17,9 +18,9 @@ class Profile extends Component {
   }
 
   componentDidMount () {
-    const { user, profileId, msgAlert } = this.props
+    const { user, match, msgAlert } = this.props
 
-    indexUserPosts(user, profileId)
+    indexUserPosts(user, match.query.user)
       .then(res => this.setState({
         posts: res.data.posts.reverse()
       }))
@@ -59,4 +60,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+export default withRouter(Profile)
