@@ -36,7 +36,7 @@ class SearchBar extends Component {
       users = this.state.users.map(user => {
         return (
           <div className='result' key={user._id}>
-            <Link>{user.username}</Link>
+            <Link to={`/posts?user=${user._id}`} >{user.username}</Link>
           </div>
         )
       })
