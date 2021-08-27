@@ -15,10 +15,7 @@ class SearchBar extends Component {
 
   search = async val => {
     this.setState({ loading: true })
-    const results = await search(
-      `${apiUrl}/users?users=${val}`
-    )
-    console.log(results)
+    const results = await search(`${apiUrl}/users?users=${val}`)
     const users = results
 
     this.setState({ users, loading: false })
@@ -32,7 +29,6 @@ class SearchBar extends Component {
   get renderUsers () {
     let users = ''
     if (this.state.users) {
-      console.log('it worked')
       users = this.state.users.map(user => {
         return (
           <div className='result' key={user._id}>
