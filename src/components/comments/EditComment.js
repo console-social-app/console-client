@@ -50,7 +50,6 @@ class EditComment extends Component {
       <>
         <Form onSubmit={this.onEditComment}>
           <Form.Group controlId='content'>
-            <Form.Label>Edit Comment</Form.Label>
             <Form.Control
               required
               name='content'
