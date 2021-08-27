@@ -85,7 +85,11 @@ class PostContainer extends Component {
     return (
       <div className="post postContainer" onClick={e => this.goToPost(e)}>
         <p className="post">
-          <Link className="postOwner">{post.owner.username}</Link>{post.title}
+          <Link
+            to={`/posts?user=${post.owner._id}`}
+            className="postOwner">{post.owner.username}
+          </Link>
+          {post.title}
         </p>
         <div className="post postContent">
           {post.content.split('\n').map((line, index) => {
