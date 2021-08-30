@@ -1,11 +1,18 @@
 .codeEditor {
   margin: 0 10px;
-  color: white;
   background-color: #133654 !important;
   border: none !important;
-  border-radius: 15px;
+  border-radius: 10px;
   font-family: "Fira code", "Fira Mono", monospace;
-  font-size: 12px
+  font-size: 14px !important;
+
+  & * {
+    font-size: 14px !important;
+  }
+
+  & > *::placeholder {
+    color: rgba(255,255,255,.8);
+  }
 }
 
 .titleInput {
