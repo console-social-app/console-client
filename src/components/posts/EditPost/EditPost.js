@@ -18,10 +18,8 @@ class UpdatePost extends Component {
 
     this.state = {
       // using null as a starting value will help us manage the "loading state" of our UpdatePost component
-      post: { // this should not be null
-        title: '', // must provide starting values for the form inputs
-        content: ''
-      }
+      title: '', // must provide starting values for the form inputs
+      content: ''
     }
   }
 
@@ -30,7 +28,7 @@ class UpdatePost extends Component {
     const { match, user, msgAlert } = this.props
 
     showPost(user, match.params.id)
-      .then(res => this.setState({ post: res.data.post }))
+      .then(res => this.setState({ title: res.data.post.title, content: res.data.post.content }))
       .then(() => msgAlert({
         heading: 'Show post success',
         message: 'Check out the post',
@@ -58,7 +56,7 @@ class UpdatePost extends Component {
 
     const { user, msgAlert, history, match } = this.props
 
-    updatePost(this.state.post, user, match.params.id)
+    updatePost(this.state, user, match.params.id)
       .then(res => history.push('/posts/' + match.params.id))
       .then(() => msgAlert({ heading: 'Post Updated!', message: 'Nice work, go check out your post.', variant: 'success' }))
       .catch(err => {
@@ -71,7 +69,7 @@ class UpdatePost extends Component {
   }
 
   render () {
-    const { post } = this.state
+    const { title, content } = this.state
     const { match } = this.props
 
     return (
@@ -84,14 +82,14 @@ class UpdatePost extends Component {
                 required
                 className='titleInput'
                 name='title'
-                value={post.title}
+                value={title}
                 placeholder='Post Title'
                 onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId='content'>
               <Editor className="border codeEditor"
-                value={post.content}
+                value={content}
                 onValueChange={content => this.setState({ content })}
                 highlight={content => highlight(content, languages.js)}
                 padding={10}
