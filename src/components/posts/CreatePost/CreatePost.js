@@ -53,6 +53,8 @@ class CreatePost extends Component {
         _id: res.data.post._id
       }))
       .then(() => history.push('/home'))
+      .then(() => this.setState({ content: '' }))
+      .then(() => this.setState({ title: '' }))
       .then(() => {
         msgAlert({
           heading: 'Post Created',
